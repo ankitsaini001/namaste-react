@@ -13,12 +13,15 @@
   },
   "license": "ISC",
   "author": "Ankit Saini",
-  "type": "commonjs",
-  "main": "App.js",
   "scripts": {
-    "test": "jest"
+    "start": "npx parcel index.html",
+    "test": "jest, start"
   },
   "devDependencies": {
     "parcel": "^2.14.4"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   }
 }

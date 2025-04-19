@@ -1,5 +1,8 @@
+import React from "react";
+import ReactDOM from "react-dom/client";
+
 const heading = React.createElement('div',{id:"parent"},React.createElement('div',{id:"child"},
-    React.createElement('h1',{id:"heading"},"NamasteReact from React")
+    React.createElement('h1',{id:"heading"},"NamasteReact from React 🚀")
 ));
 const paragraph = React.createElement('p',{id:"para", className:"parg"},"Calling react library using CDN links in which 1st script is used to call react while second script will connect react and browser.");
 const callApp = React.createElement('i',{},"Calling this React from App.js file");
