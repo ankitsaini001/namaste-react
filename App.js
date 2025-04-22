@@ -1,52 +1,75 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-// JSX - HTML-Like or XML-Like syntax
-// JSX (Transpiled it before it reaches the JS Engine) => PARCEL (Babel is handling this)
-//JSX => React.createElement => ReactElement-JS Object => HTMLElement()
-const headingJsx = <h1>Namaste React using JSX 🚀</h1>
-const elem = <span>Hello Ankit</span>
-// React Element => Is an object
-const heading = React.createElement('div',{id:"heading", className:"head"}, "Namaste React 🚀");
-const container = React.createElement('div',{id:'conatiner'}, heading, headingJsx);
-const parent = ReactDOM.createRoot(document.getElementById('root'));
-// when we render this react object to DOM then it will become html
-const str = "Welcome Ankit Saini";
+// Header Section Container
+const Header = () => {
+  return (
+    <div className="header">
+      <div className="app-logo">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdaMYtVi9_tfNcpsbGGseU6ehYgV9UeU3h7A&s"
+          alt="App Logo"
+        />
+      </div>
+      <div className="header-menu">
+        <ul className="nav-items">
+          <li>Home</li>
+          <li>About Us</li>
+          <li>Contact Us</li>
+          <li>Cart</li>
+        </ul>
+      </div>
+    </div>
+  );
+};
 
+// Restaurant Card
+const RestoCard = () => {
+  return (
+    <div className="res-card">
+        <img
+        className="res-logo"
+        alt="res-logo" 
+        src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/yzgqriufpzmloogcn2vl "/>
+      <h3>Meghana Foods</h3>
+      <p>Briyani, North Indian, Asian</p>
+      <p>4.4star</p>
+      <p>38 minutes</p>
+    </div>
+  );
+};
 
-// React Components
-/**
- * 1. Class Based Components - Old 
- * 2. Functional Based Components - New
- */
+// Body Section
+const Body = () => {
+  return (
+    <div className="body">
+      <div className="search">Search</div>
+      <div className="res-container">
+        <RestoCard />
+        <RestoCard />
+        <RestoCard />
+        <RestoCard />
+        <RestoCard />
+        <RestoCard />
+        <RestoCard />
+        <RestoCard />
+        <RestoCard />
+        <RestoCard />
+      </div>
+    </div>
+  );
+};
 
-// Functional Component
-/**
- * A function that returns a JSX Code is known as functional component.
- * A JSX is  FUNCTIONAL Component
- */
-
-// This render is known as Component Composition. Composing two components in one another.
-const HeadingJsx = () => {
+// App Container
+const AppLayout = () => {
     return (
-        <>
-        <h1>Namaste React using JSX 🚀</h1>
-        <h1>{heading}</h1>
-        <i>{str}</i>
-        </>
-        
-    )
-}
+      <div className="app">
+        <Header />
+        <Body /> 
+      </div>
+    );
+  };
+  
 
-const Heading = () =>{
-    return(
-        <>
-        <h1>Namaste Javascript using Functional Component 🚀🚀</h1>
-        <p>{elem}</p>
-        <HeadingJsx/>
-        </>
-    )
-}
-
-//parent.render(container);
-parent.render(<Heading/>)
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<AppLayout />);
