@@ -18,3 +18,5 @@
 - HTTPS is provided by Parcel
 - Tree Shaking Algorithm = Remove unused Code.
 - Different build for Dev and Production Bundles
+
+# Config driven UI
