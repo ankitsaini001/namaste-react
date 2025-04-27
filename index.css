@@ -1,75 +1,174 @@
+/* Base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f8f8;
+  color: #333;
+}
+
+/* App wrapper */
 .app {
-    display: flex;
-    flex-direction: column;
-    font-family: Arial, sans-serif;
-  }
-  
-  /* Header layout */
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #f8f8f8;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  /* Logo */
-  .app-logo img {
-    width: 8.8rem;
-    height: auto;
-  }
-  
-  /* Navigation Menu */
-  .header-menu .nav-items {
-    display: flex;
-    gap: 1.5rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .header-menu .nav-items li {
-    cursor: pointer;
-    font-weight: 500;
-    transition: color 0.2s ease;
-  }
-  
-  .header-menu .nav-items li:hover {
-    color: #007acc;
-  }
-  
-  /* Body Section */
-  .body {
-    padding: 2rem;
-  }
-  
-  .search {
-    margin-bottom: 1rem;
-    font-weight: bold;
-  }
-  
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header Section */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.app-logo img {
+  width: 7rem;
+}
+
+/* Navigation Menu */
+.nav-items {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-items li {
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.nav-items li:hover {
+  color: #fc8019;
+}
+
+/* Body Section */
+.body {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  min-height: 100vh;
+}
+
+/* Search Box */
+.search-container {
+  margin-bottom: 2rem;
+}
+
+.search-box {
+  width: 93.6%;
+  padding: 0.9rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: 0.3s ease;
+}
+
+.search-box:focus {
+  border-color: #fc8019;
+  box-shadow: 0 0 5px rgba(252, 128, 25, 0.5);
+}
+
+/* Restaurant Cards Container */
+.res-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: flex-start;
+}
+
+/* Restaurant Card */
+.res-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+  overflow: hidden;
+  width: 250px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.res-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.res-logo {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  background-color: #f0f0f0;
+}
+
+.res-content {
+  padding: 1rem;
+}
+
+.res-content h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.4rem;
+}
+
+.cuisines {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.rating-time {
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.rating-time span {
+  margin-right: 0.3rem;
+}
+.filter-btn{
+  margin: 10px;
+}
+/* Filter Search Container */
+.filter-search {
+  display: flex;
+  justify-content: center; /* Center the button */
+  margin: 20px 0; /* Add some space above and below */
+}
+
+/* Filter Button */
+.filter-btn {
+  background-color: #ff6347; /* Tomato color */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.filter-btn:hover {
+  background-color: #e5533d; /* Slightly darker on hover */
+}
+
+@media (max-width: 768px) {
   .res-container {
-    display: flex;
-    gap: 1rem;
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
-  .res-card {
-    border: 1px solid #ccc;
-    padding: 1rem;
-    border-radius: 8px;
-    width: 250px;
-    background-color: #0f0f0f0f;
-    margin-left: 2.2rem;
+    justify-content: center;
   }
 
-  .res-card:hover{
-    border: 1px solid rgb(0, 0, 0);
-    cursor: pointer;
-    box-shadow: 10px 10px #ddd;
-  }
-img.res-logo {
+  .res-card {
     width: 100%;
-    height: 200px;
+    max-width: 90%;
+  }
+
+  .nav-items {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 }
