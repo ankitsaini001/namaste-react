@@ -190,6 +190,27 @@ body {
     background-position: 800px 0;
   }
 }
+/* SignUpButton.css */
+.signup-btn {
+  background-color: #ff7700; /* Swiggy orange color */
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 6px 10px;;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  outline: none;
+}
+
+.signup-btn:hover {
+  background-color: #e65c00; /* Darker orange on hover */
+}
+
+.signup-btn:focus {
+  outline: none;
+}
 
 @media (max-width: 768px) {
   .res-container {
