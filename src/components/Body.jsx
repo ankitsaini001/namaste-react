@@ -1,12 +1,11 @@
 import Shimmer from "../Shimmer";
 import RestoCard from "./RestoCard";
-// import resList from "../Utils/Mockdata";
 import { useEffect, useState } from "react";
 
-// Body Section
 const Body = () => {
-  // Initialize directly with resList (don't wrap it inside {})
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
+  const [searchList, setSearchRestro] = useState("");
 
   useEffect(() => {
     fetchData();
@@ -17,44 +16,53 @@ const Body = () => {
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5204303&lng=73.8567437&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
-    //Optional Chaining
-    //console.log(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-    setListOfRestaurants(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
+    const restaurants =
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
+    setListOfRestaurants(restaurants);
+    setFilteredRestaurants(restaurants);
   };
 
-  // Conditional Rendering
-  // if (listOfRestaurants.length === 0) {
-  //    return <Shimmer />
-  // }
-
-  const handleClick = () => {
+  const handleTopRatedClick = () => {
     const filteredList = listOfRestaurants.filter(
       (res) => parseFloat(res.info.avgRating) > 4
     );
-    setListOfRestaurants(filteredList);
-    console.log(filteredList);
+    setFilteredRestaurants(filteredList);
   };
 
-  return listOfRestaurants.length === 0 ? (
+  const handleSearchClick = () => {
+    const filtered = listOfRestaurants.filter((restro) =>
+      restro.info.name.toLowerCase().includes(searchList.toLowerCase())
+    );
+    setFilteredRestaurants(filtered);
+  };
+
+  return filteredRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="body">
       <div className="search-container">
-        <input type="text" className="search-box" placeholder="search..."/>
+        <input
+          type="text"
+          className="search-box"
+          placeholder="Search for restaurants..."
+          value={searchList}
+          onChange={(e) => setSearchRestro(e.target.value)}
+        />
+        <button type="button" onClick={handleSearchClick}>
+          Search
+        </button>
       </div>
+
       <div className="filter-search">
-        <button className="filter-btn" onClick={handleClick}>
+        <button className="filter-btn" onClick={handleTopRatedClick}>
           Top Rated Restaurants
         </button>
       </div>
 
       <div className="res-container">
-        {listOfRestaurants &&
-          listOfRestaurants.map((restaurant) => (
-            <RestoCard key={restaurant.info.id} resName={restaurant} />
-          ))}
+        {filteredRestaurants.map((restaurant) => (
+          <RestoCard key={restaurant.info.id} resName={restaurant} />
+        ))}
       </div>
     </div>
   );

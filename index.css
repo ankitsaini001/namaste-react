@@ -57,24 +57,48 @@ body {
 }
 
 /* Search Box */
+/* Search Container */
 .search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
   margin-bottom: 2rem;
 }
 
+/* Search Input Box */
 .search-box {
-  width: 93.6%;
-  padding: 0.9rem 1.2rem;
-  font-size: 1rem;
-  border-radius: 10px;
+  width: 60%;
+  max-width: 500px;
+  padding: 0.8rem 1rem;
+  border-radius: 999px;
   border: 1px solid #ccc;
+  font-size: 1rem;
   outline: none;
-  transition: 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 .search-box:focus {
   border-color: #fc8019;
-  box-shadow: 0 0 5px rgba(252, 128, 25, 0.5);
+  box-shadow: 0 0 5px rgba(252, 128, 25, 0.4);
 }
+
+/* Search Button */
+.search-container button {
+  padding: 0.7rem 1.4rem;
+  font-size: 1rem;
+  border: none;
+  background-color: #fc8019;
+  color: white;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-container button:hover {
+  background-color: #e46e0c;
+}
+
 
 /* Restaurant Cards Container */
 .res-container {
