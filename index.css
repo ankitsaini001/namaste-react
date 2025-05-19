@@ -236,6 +236,23 @@ body {
   outline: none;
 }
 
+.err{
+  text-align: center;
+}
+.err-alert{
+   font-size: 90px;
+}
+
+.header-menu li a {
+  text-decoration: none;
+  color: #333;
+}
+
+.header-menu li a:hover {
+  text-decoration: underline;
+  color: #007bff;
+}
+
 @media (max-width: 768px) {
   .res-container {
     justify-content: center;

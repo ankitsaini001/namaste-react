@@ -41,3 +41,7 @@
 - useState() & useEffect() these are most important hooks in react.
     - useState() => Whenever a state variable change it render the component.
     - useEffect() => This hook is called after a component render. If we have to do anything after the render of a component we ahve to use the useEffect hook.
+
+# 02 Types of Routing in web app
+- Client Side Routing
+- Server Side Routing        
