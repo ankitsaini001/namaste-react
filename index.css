@@ -108,6 +108,18 @@ body {
   justify-content: flex-start;
 }
 
+/* Remove underline from entire restaurant card links */
+.res-container a {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+.res-container a:hover {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+
 /* Restaurant Card */
 .res-card {
   background: #fff;
@@ -133,6 +145,8 @@ body {
 
 .res-content {
   padding: 1rem;
+  text-decoration: none;
+  color: #333;
 }
 
 .res-content h3 {
@@ -252,6 +266,7 @@ body {
   text-decoration: underline;
   color: #007bff;
 }
+
 
 @media (max-width: 768px) {
   .res-container {

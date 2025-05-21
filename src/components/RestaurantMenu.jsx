@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
 import Shimmer from "../Shimmer";
+import { useParams } from "react-router-dom";
+import { Menu_API } from "../Utils/constants";
 
 const RestaurantMenu = () => {
   const [resInfo, setResInfo] = useState(null);
+
+  const {id} = useParams();
 
   useEffect(() => {
     fetchMenu();
   }, []);
 
   const fetchMenu = async () => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=18.5204303&lng=73.8567437&restaurantId=394784&catalog_qa=undefined&submitAction=ENTER"
-    );
+    const data = await fetch(Menu_API+id);  //456986
     const json = await data.json();
     console.log(json);
     setResInfo(json.data);
@@ -23,10 +25,8 @@ const RestaurantMenu = () => {
 
   const { name, cuisines, costForTwoMessage, totalRatingsString } =
     resInfo?.cards[2]?.card?.card?.info;
-  const { itemCards } =
-    resInfo?.cards[4]?.groupedCard?.cardGroupMap.REGULAR.cards[1]?.card?.card
-      ?.itemCards;
-console.log(itemCards);
+  const { itemCards } = resInfo?.cards[4]?.groupedCard?.cardGroupMap.REGULAR.cards[2]?.card?.card;
+  console.log(itemCards);
 
   return (
     <div className="RestaurantMenu">
@@ -35,18 +35,24 @@ console.log(itemCards);
         {totalRatingsString} - {costForTwoMessage}
       </p>
       <p>{cuisines.join(", ")}</p>
-      <h3>Menu</h3>
+      <h3>Recommanded</h3>
       <ul>
-        {itemCards?.map((item, index) => (
-          <li key={index}>
-            {item?.card?.info?.name} - ₹{(item?.card?.info?.price || 0) / 100}
+        {itemCards.map((item, index) => (
+          <li key={item.card.info.id}>
+            {item?.card?.info?.name} - ₹{(item?.card?.info?.price ||  item?.card?.info?.defaultPrice || 0) / 100}
           </li>
         ))}
-        <li>Briyani</li>
-        <li>Aloo Pratha</li>
-        <li>Pooha</li>
-        <li>Burger</li>
       </ul>
+      {/* <div>
+        <h3>Main Course</h3>
+      <ul>
+        {itemCards.map((item, index) => (
+          <li key={item.card.info.id}>
+            {item?.card?.info?.name} - ₹{(item?.card?.info?.price ||  item?.card?.info?.defaultPrice || 0) / 100}
+          </li>
+        ))}
+      </ul>
+      </div> */}
     </div>
   );
 };

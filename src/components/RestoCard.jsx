@@ -14,7 +14,7 @@ const RestoCard = ({ resName }) => {
           src={CDN_URL + cloudinaryImageId}
         />
         <div className="res-content">
-          <h3>{name}</h3>
+          <h3 className="restroname">{name}</h3>
           <p className="cuisines">{cuisines.join(", ")}</p>
           <div className="rating-time">
             <span>{avgRating} ⭐</span> • <span>{sla.slaString}</span>
