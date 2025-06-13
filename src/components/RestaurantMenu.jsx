@@ -1,25 +1,27 @@
-import { useEffect, useState } from "react";
 import Shimmer from "../Shimmer";
 import { useParams } from "react-router-dom";
-import { Menu_API } from "../Utils/constants";
+// import { Menu_API } from "../Utils/constants";
+import useRestaurantMenu from "../Utils/useRestaurantMenu";
 
 const RestaurantMenu = () => {
-  const [resInfo, setResInfo] = useState(null);
+  //const [resInfo, setResInfo] = useState(null);
   const { id } = useParams();
 
-  useEffect(() => {
-    fetchMenu();
-  }, []);
+  const resInfo = useRestaurantMenu(id);
 
-  const fetchMenu = async () => {
-    try {
-      const data = await fetch(Menu_API + id);
-      const json = await data.json();
-      setResInfo(json.data);
-    } catch (error) {
-      console.error("Failed to fetch menu:", error);
-    }
-  };
+  // useEffect(() => {
+  //   fetchMenu();
+  // }, []);
+
+  // const fetchMenu = async () => {
+  //   try {
+  //     const data = await fetch(Menu_API + id);
+  //     const json = await data.json();
+  //     setResInfo(json.data);
+  //   } catch (error) {
+  //     console.error("Failed to fetch menu:", error);
+  //   }
+  // };
 
   if (!resInfo) return <Shimmer />;
 
@@ -27,13 +29,18 @@ const RestaurantMenu = () => {
     resInfo?.cards[2]?.card?.card?.info || {};
 
   const itemCards =
-    resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card?.card?.itemCards || [];
+    resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card
+      ?.card?.itemCards || resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[3]?.card
+      ?.card?.itemCards || resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[4]?.card
+      ?.card?.itemCards ||[];
 
   return (
     <div className="menu-container">
       <div className="restaurant-info">
         <h1>{name}</h1>
-        <p>{totalRatingsString} • {costForTwoMessage}</p>
+        <p>
+          {totalRatingsString} • {costForTwoMessage}
+        </p>
         <p>{cuisines?.join(", ")}</p>
       </div>
 
@@ -47,7 +54,9 @@ const RestaurantMenu = () => {
               {/* Left - Info */}
               <div className="menu-details">
                 <h3>{info?.name}</h3>
-                <p className="price">₹{(info?.price || info?.defaultPrice || 0) / 100}</p>
+                <p className="price">
+                  ₹{(info?.price || info?.defaultPrice || 0) / 100}
+                </p>
                 {info?.description && (
                   <p className="description">
                     {info.description.length > 130

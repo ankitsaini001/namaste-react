@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -7,7 +7,19 @@ import About from "./components/About";
 import Help from "./components/Help";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
+//import Grocery from "./components/grocery";
 
+//Chuking
+// Code Splitting
+// Dynamic Bundling
+// Lazy Loading
+// On demand Loading
+// dynamic import
+/**
+ * All these above terms is used for a concept where we bundle different coponent seprately
+ */
+
+const Grocery = lazy(()=>import("./components/Grocery"));
 // App Layout
 const AppLayout = () => {
   return (
@@ -34,6 +46,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/help",
         element: <Help />,
+      },
+      {
+        path: "/grocery",
+        element: <Suspense fallback={<h1>Loading...</h1>}><Grocery /></Suspense>,
       },
       {
         path: "/restaurant/:id",

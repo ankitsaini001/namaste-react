@@ -377,7 +377,7 @@ img.w-full.h-full.object-cover.rounded-md.border {
 }
 .user-card {
   width: auto;
-  border: 15px solid green;
+  border: 3px solid rgb(244, 126, 1);
   padding: 50px;
   margin: 20px;
 }

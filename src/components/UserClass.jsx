@@ -7,7 +7,7 @@ class UserClass extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log("child constructor");
+    //console.log("child constructor");
     //console.log(props);
 
     // useState hook was not in Class Components so we uses state object here
@@ -22,14 +22,14 @@ class UserClass extends React.Component {
 
   // to fetch data from the API. We use this for API.
   async componentDidMount() {
-    console.log("child componentDidMount");
+    //console.log("child componentDidMount");
     const Data = await fetch('https://api.github.com/users/ankitsaini001');
     const json = await Data.json();
 
     this.setState({
       userInfo: json,
     })
-    console.log(json);
+    //console.log(json);
   }
 
   render() {
