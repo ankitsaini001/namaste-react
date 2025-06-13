@@ -6,7 +6,7 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f8f8f8;
   color: #333;
 }
@@ -99,7 +99,6 @@ body {
   background-color: #e46e0c;
 }
 
-
 /* Restaurant Cards Container */
 .res-container {
   display: flex;
@@ -118,7 +117,6 @@ body {
   text-decoration: none !important;
   color: inherit !important;
 }
-
 
 /* Restaurant Card */
 .res-card {
@@ -169,7 +167,7 @@ body {
 .rating-time span {
   margin-right: 0.3rem;
 }
-.filter-btn{
+.filter-btn {
   margin: 10px;
 }
 /* Filter Search Container */
@@ -234,7 +232,7 @@ body {
   color: white;
   font-size: 16px;
   font-weight: bold;
-  padding: 6px 10px;;
+  padding: 6px 10px;
   border: none;
   border-radius: 25px;
   cursor: pointer;
@@ -250,11 +248,11 @@ body {
   outline: none;
 }
 
-.err{
+.err {
   text-align: center;
 }
-.err-alert{
-   font-size: 90px;
+.err-alert {
+  font-size: 90px;
 }
 
 .header-menu li a {
@@ -267,6 +265,148 @@ body {
   color: #007bff;
 }
 
+img.w-full.h-full.object-cover.rounded-md.border {
+  width: 10rem;
+  height: 9rem;
+}
+
+.menu-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+.restaurant-info {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.restaurant-info h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.restaurant-info p {
+  color: #666;
+  font-size: 0.95rem;
+  margin: 2px 0;
+}
+
+.menu-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+.menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.menu-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  border: 1px solid #eaeaea;
+  padding: 1rem;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.menu-details {
+  flex: 1;
+}
+
+.menu-details h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.price {
+  color: #2e7d32;
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+}
+
+.description {
+  color: #555;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.menu-image-container {
+  position: relative;
+  width: 140px;
+  height: 100px;
+  flex-shrink: 0;
+}
+
+.menu-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid #ccc;
+}
+
+.add-button {
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  border: 1px solid #4caf50;
+  color: #4caf50;
+  padding: 4px 12px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.add-button:hover {
+  background-color: #4caf50;
+  color: white;
+}
+.user-card {
+  width: auto;
+  border: 15px solid green;
+  padding: 50px;
+  margin: 20px;
+}
+
+.btnclasscomp {
+  background-color: #021103; /* Green background */
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  text-align: center;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btnclasscomp:hover {
+  background-color: #021103;
+  transform: scale(1.05);
+}
+
+.btnclasscomp:active {
+  background-color: #021103;
+  transform: scale(0.98);
+}
+.avatar_url{
+  width: 8rem;
+  height: 4rem;
+}
 
 @media (max-width: 768px) {
   .res-container {
