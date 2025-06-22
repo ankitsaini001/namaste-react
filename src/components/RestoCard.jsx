@@ -24,4 +24,20 @@ const RestoCard = ({ resName }) => {
     );
   };
 
+  // Higher Order Component
+  // Which will take this RestroCard as input and output a new component
+
+  export const iswithOpenStatus = (RestoCard) => {
+    return (props) => {
+      return (
+        <div className="relative">
+          {
+            props ? <label className="absolute top-[0.2rem] left-[0.1rem] bg-white z-30">🟢</label> : <label className="absolute top-[0.2rem] left-[0.1rem] bg-white z-30">🔴</label>
+          }
+          <RestoCard  {...props} />
+        </div>
+      )
+    }
+  }
+
   export default RestoCard;

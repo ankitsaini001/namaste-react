@@ -1,5 +1,5 @@
 import Shimmer from "../Shimmer";
-import RestoCard from "./RestoCard";
+import RestoCard, {iswithOpenStatus} from "./RestoCard";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../Utils/useOnlineStatus";
@@ -7,7 +7,12 @@ import useOnlineStatus from "../Utils/useOnlineStatus";
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
-  const [searchList, setSearchRestro] = useState("");
+  const [searchList, setSearchRestro] = useState(""); 
+
+  console.log('listOfRestaurants: ' , listOfRestaurants);
+
+  const RestaurantOpenStatus = iswithOpenStatus(RestoCard);
+  
 
   useEffect(() => {
     fetchData();
@@ -72,7 +77,9 @@ const Body = () => {
       <div className="res-container">
         {filteredRestaurants.map((restaurant) => (
           <Link key={restaurant.info.id} to={"/restaurant/"+restaurant.info.id}>
-          <RestoCard resName={restaurant} />
+            {
+              restaurant.info.isOpen ? <RestaurantOpenStatus resName={restaurant} /> : <RestoCard resName={restaurant} />
+            }
           </Link>
         ))}
       </div>

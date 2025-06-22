@@ -1,3 +1,4 @@
+@import "tailwindcss";
 /* Base styles */
 * {
   box-sizing: border-box;
@@ -293,7 +294,7 @@ img.w-full.h-full.object-cover.rounded-md.border {
   margin: 2px 0;
 }
 
-.menu-title {
+/* .menu-title {
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 1.5rem;
@@ -383,7 +384,7 @@ img.w-full.h-full.object-cover.rounded-md.border {
 }
 
 .btnclasscomp {
-  background-color: #021103; /* Green background */
+  background-color: #021103;
   border: none;
   color: white;
   padding: 12px 24px;
@@ -406,7 +407,7 @@ img.w-full.h-full.object-cover.rounded-md.border {
 .avatar_url{
   width: 8rem;
   height: 4rem;
-}
+} */
 
 @media (max-width: 768px) {
   .res-container {

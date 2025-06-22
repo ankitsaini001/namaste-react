@@ -1,38 +1,29 @@
 import Shimmer from "../Shimmer";
 import { useParams } from "react-router-dom";
-// import { Menu_API } from "../Utils/constants";
 import useRestaurantMenu from "../Utils/useRestaurantMenu";
+import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantMenu = () => {
-  //const [resInfo, setResInfo] = useState(null);
   const { id } = useParams();
 
+  // Custom hook to fetch menu data
   const resInfo = useRestaurantMenu(id);
-
-  // useEffect(() => {
-  //   fetchMenu();
-  // }, []);
-
-  // const fetchMenu = async () => {
-  //   try {
-  //     const data = await fetch(Menu_API + id);
-  //     const json = await data.json();
-  //     setResInfo(json.data);
-  //   } catch (error) {
-  //     console.error("Failed to fetch menu:", error);
-  //   }
-  // };
 
   if (!resInfo) return <Shimmer />;
 
+  // Extract restaurant info
   const { name, cuisines, costForTwoMessage, totalRatingsString } =
-    resInfo?.cards[2]?.card?.card?.info || {};
+    resInfo?.cards?.[2]?.card?.card?.info || {};
 
-  const itemCards =
-    resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card
-      ?.card?.itemCards || resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[3]?.card
-      ?.card?.itemCards || resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[4]?.card
-      ?.card?.itemCards ||[];
+  // Filter only ItemCategory type cards
+  const categories =
+    resInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(
+      (c) =>
+        c?.card?.card?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    ) || [];
+
+  console.log("categories: ", categories);
 
   return (
     <div className="menu-container">
@@ -44,43 +35,14 @@ const RestaurantMenu = () => {
         <p>{cuisines?.join(", ")}</p>
       </div>
 
-      <h2 className="menu-title">Recommended</h2>
-
-      <div className="menu-list">
-        {itemCards.map((item) => {
-          const info = item?.card?.info;
-          return (
-            <div key={info?.id} className="menu-card">
-              {/* Left - Info */}
-              <div className="menu-details">
-                <h3>{info?.name}</h3>
-                <p className="price">
-                  ₹{(info?.price || info?.defaultPrice || 0) / 100}
-                </p>
-                {info?.description && (
-                  <p className="description">
-                    {info.description.length > 130
-                      ? info.description.slice(0, 130) + "..."
-                      : info.description}
-                  </p>
-                )}
-              </div>
-
-              {/* Right - Image & Button */}
-              {info?.imageId && (
-                <div className="menu-image-container">
-                  <img
-                    src={`https://media-assets.swiggy.com/swiggy/image/upload/${info.imageId}`}
-                    alt={info.name}
-                    className="menu-image"
-                  />
-                  {/* <button className="add-button">ADD</button> */}
-                </div>
-              )}
-            </div>
-          );
-        })}
-      </div>
+      {/* Render each category section */}
+{
+  categories.map((category) => {
+    return <RestaurantCategory 
+     key={category?.card?.card?.title}
+    data={category?.card?.card} />;
+  })
+}
     </div>
   );
 };
