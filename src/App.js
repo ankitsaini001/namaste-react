@@ -7,6 +7,9 @@ import About from "./components/About";
 import Help from "./components/Help";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
+import { Provider } from "react-redux";
+import appStore from "./Utils/appStore";
+import Cart from "./components/Cart";
 //import Grocery from "./components/grocery";
 
 //Chuking
@@ -19,14 +22,16 @@ import RestaurantMenu from "./components/RestaurantMenu";
  * All these above terms is used for a concept where we bundle different coponent seprately
  */
 
-const Grocery = lazy(()=>import("./components/Grocery"));
+const Grocery = lazy(() => import("./components/Grocery"));
 // App Layout
 const AppLayout = () => {
   return (
-    <div className="app">
-      <Header />
-      <Outlet />
-    </div>
+    <Provider store={appStore}>
+      <div className="app">
+        <Header />
+        <Outlet />
+      </div>
+    </Provider>
   );
 };
 
@@ -49,11 +54,19 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/grocery",
-        element: <Suspense fallback={<h1>Loading...</h1>}><Grocery /></Suspense>,
+        element: (
+          <Suspense fallback={<h1>Loading...</h1>}>
+            <Grocery />
+          </Suspense>
+        ),
       },
       {
         path: "/restaurant/:id",
-        element: <RestaurantMenu />
+        element: <RestaurantMenu />,
+      },
+      {
+        path: "/cart",
+        element: <Cart/>
       }
     ],
     errorElement: <Error />,

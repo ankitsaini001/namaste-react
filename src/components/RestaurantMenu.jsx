@@ -5,6 +5,7 @@ import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantMenu = () => {
   const { id } = useParams();
+  const dummy = "dummy data";
 
   // Custom hook to fetch menu data
   const resInfo = useRestaurantMenu(id);
@@ -36,13 +37,14 @@ const RestaurantMenu = () => {
       </div>
 
       {/* Render each category section */}
-{
-  categories.map((category) => {
-    return <RestaurantCategory 
-     key={category?.card?.card?.title}
-    data={category?.card?.card} />;
-  })
-}
+    {
+      categories.map((category) => {
+        return <RestaurantCategory 
+        key={category?.card?.card?.title}
+        data={category?.card?.card} 
+        dummy={dummy}/>;
+      })
+    }
     </div>
   );
 };
